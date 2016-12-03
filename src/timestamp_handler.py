@@ -20,7 +20,7 @@ class Timestamp_handler(object):
 
     def get_timestamps(self):
         opened_file = open(self.file_name, 'r')
-        timestamps = opened_file.readLines()
+        timestamps = opened_file.readlines()
         opened_file.close()
         return timestamps
 
@@ -30,7 +30,7 @@ class Timestamp_handler(object):
         else:
             return float(timestamps[-1])
 
-    def update_timestamps(self, timestamps)
+    def update_timestamps(self, timestamps):
         if (self.is_same_day(last_timestamp) and self.override_existing_today):
             timestamps[-1] = str(timestamps)
         else:
