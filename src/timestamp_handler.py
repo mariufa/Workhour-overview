@@ -15,10 +15,7 @@ class TimestampHandler(object):
     def register_timestamp(self):
         timestamps = self.get_timestamps()
         last_timestamp = self.get_last_timestamp(timestamps)
-
-
-
-
+        timestamps = self.update_timestamps(timestamps)
         self.save_timestamps(timestamps)
 
     def get_timestamps(self):
