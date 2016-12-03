@@ -1,6 +1,7 @@
 import unittest
+import os
 from time import time
-from src.timestamp_handler import Timestamp_handler
+from src.timestamp_handler import TimestampHandler
 
 class TestTimestampHandler(unittest.TestCase):
 
@@ -11,11 +12,14 @@ class TestTimestampHandler(unittest.TestCase):
         test_file.close()
 
         now = time()
-        self.handler = Timestamp_handler(self.file_name, now, False)
+        self.handler = TimestampHandler(self.file_name, now, False)
 
     def test_get_empty_timestamps(self):
         timestamps = self.handler.get_timestamps()
         self.assertEqual([], timestamps)
+
+    def tearDown(self)
+        os.remove(self.file_name)
 
 if __name__ == '__main__':
     unittest.main()

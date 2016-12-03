@@ -1,7 +1,10 @@
 from time import time
 from datetime import datetime
 
-class Timestamp_handler(object):
+class TimestampHandler(object):
+    """
+    Handler to save a timestamp to a file. Either append or replace timestamps from same day
+    """
 
     def __init__(self, file_name, timestamp, override_existing_today):
         self.file_name = file_name
