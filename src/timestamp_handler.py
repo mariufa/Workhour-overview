@@ -15,14 +15,12 @@ class TimestampHandler(object):
     def register_timestamp(self):
         timestamps = self.get_timestamps()
         last_timestamp = self.get_last_timestamp(timestamps)
-        timestamps = self.update_timestamps(timestamps)
+        timestamps = self.update_timestamps(last_timestamp, timestamps)
         self.save_timestamps(timestamps)
 
     def get_timestamps(self):
-        opened_file = open(self.file_name, 'r')
-        timestamps = opened_file.readlines()
-        opened_file.close()
-        return timestamps
+        with open(self.file_name, 'r') as f:
+            return f.read().splitlines()
 
     def get_last_timestamp(self, timestamps):
         if (len(timestamps) == 0):
@@ -30,7 +28,7 @@ class TimestampHandler(object):
         else:
             return float(timestamps[-1])
 
-    def update_timestamps(self, timestamps):
+    def update_timestamps(self,last_timestamp,  timestamps):
         if (self.is_same_day(last_timestamp) and self.override_existing_today):
             timestamps[-1] = str(timestamps)
         else:
