@@ -30,7 +30,7 @@ class TimestampHandler(object):
 
     def update_timestamps(self,last_timestamp,  timestamps):
         if (self.is_same_day(last_timestamp) and self.override_existing_today):
-            timestamps[-1] = str(timestamps)
+            timestamps[-1] = str(self.timestamp)
         else:
             timestamps.append(self.timestamp)
             if (len(timestamps) > self.NUMBER_DAYS_HISTORY):
