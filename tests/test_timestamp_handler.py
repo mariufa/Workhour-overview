@@ -1,7 +1,7 @@
 import unittest
 import os
 from time import time
-from src.timestamp_handler import TimestampHandler
+from src.timestamp_handler import *
 
 class TestTimestampHandler(unittest.TestCase):
 
@@ -17,14 +17,13 @@ class TestTimestampHandler(unittest.TestCase):
         self.handler.register_timestamp()
 
     def test_register_timestamps(self):
-        timestamps = self.handler.get_timestamps()
+        timestamps = get_timestamps(self.file_name)
         self.assertEqual(2, len(timestamps))
 
     def tearDown(self):
         os.remove(self.file_name)
 
-if __name__ == '__main__':
-    unittest.main()
+
 
 class TestTimestampHandlerOverrideToday(unittest.TestCase):
 
@@ -43,11 +42,11 @@ class TestTimestampHandlerOverrideToday(unittest.TestCase):
         self.handler.register_timestamp()
 
     def test_register_timestamps_number(self):
-        timestamps = self.handler.get_timestamps()
+        timestamps = get_timestamps(self.file_name)
         self.assertEqual(2, len(timestamps))
 
     def test_register_timestamps_stamps(self):
-        timestamps = self.handler.get_timestamps()
+        timestamps = get_timestamps(self.file_name)
         self.assertEqual(float(timestamps[0]), self.yesterday)
         self.assertEqual(float(timestamps[1]), self.now)
 
@@ -57,3 +56,6 @@ class TestTimestampHandlerOverrideToday(unittest.TestCase):
 def clearFile(file_name):
     file_to_clear = open(file_name, "w")
     file_to_clear.close()
+
+if __name__ == '__main__':
+    unittest.main()
