@@ -1,10 +1,8 @@
-from timestamp_handler import TimestampHandler
+from timestamp_handler import *
 from time import time
 
 
 if __name__ == '__main__':
-    regsiter_start_file_name = "workhour_start.txt"
     now = time()
-    handler = TimestampHandler(regsiter_start_file_name, now, False)
+    handler = TimestampHandler(REGISTER_START_FILE_NAME, now, False)
     handler.register_timestamp()
-    

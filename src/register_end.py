@@ -3,7 +3,6 @@ from time import time
 
 
 if __name__ == '__main__':
-    regsiter_end_file_name = "workhour_end.txt"
     now = time()
-    handler = TimestampHandler(regsiter_end_file_name, now, True)
+    handler = TimestampHandler(REGISTER_END_FILE_NAME, now, True)
     handler.register_timestamp()
