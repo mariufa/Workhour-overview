@@ -1,15 +1,26 @@
-from timestamp_handler import TimestampHandler
+from timestamp_handler import *
 import time
 from datetime import datetime
 
-def get_timestamps(file_name):
-    with open(file_name, 'r') as f:
-        return f.read().splitlines()
+class WorkDay(object):
 
-def is_same_day(stamp_one, stamp_two):
-    date_one = datetime.fromtimestamp(stamp_one).isocalendar()
-    date_two = datetime.fromtimestamp(stamp_two).isocalendar()
-    return date_one == date_two
+    def __init__(self, start_stamp, end_stamp):
+        start = time.localtime(float(start_stamp))
+        end = time.localtime(float(start_stamp))
+        self.day = start.tm_mday
+        self.month = start.tm_mon
+        self.start_hour = start.tm_hour
+        self.start_min = start.tm_min
+        self.end_hour = end.tm_hour
+        self.end_min = end.tm_min
+
+    def __str__(self):
+        return ("Workhours for: " +
+                self.day + "." + self.month +
+                " - " + self.start_hour +
+                ":" + self.start_min +
+                " --- " + self.end_hour +
+                ":" + self.end_min)
 
 if __name__ == '__main__':
     regsiter_start_file_name = "workhour_start.txt"
