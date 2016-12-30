@@ -1,4 +1,4 @@
-from timestamp_handler import TimestampHandler
+from timestamp_handler import *
 from time import time
 
 
