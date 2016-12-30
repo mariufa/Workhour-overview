@@ -44,4 +44,4 @@ def print_work_days(work_days):
 
 if __name__ == '__main__':
     work_days = load_work_days()
-    print_work_days()
+    print_work_days(work_days)
