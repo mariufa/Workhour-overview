@@ -23,8 +23,6 @@ class TestTimestampHandler(unittest.TestCase):
     def tearDown(self):
         os.remove(self.file_name)
 
-
-
 class TestTimestampHandlerOverrideToday(unittest.TestCase):
 
     def setUp(self):

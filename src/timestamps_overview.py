@@ -6,7 +6,7 @@ class WorkDay(object):
 
     def __init__(self, start_stamp, end_stamp):
         start = time.localtime(start_stamp)
-        end = time.localtime(start_stamp)
+        end = time.localtime(end_stamp)
         self.day = start.tm_mday
         self.month = start.tm_mon
         self.start_hour = start.tm_hour
@@ -17,14 +17,16 @@ class WorkDay(object):
     def __str__(self):
         return ("Workhours for: " +
                 str(self.day) + "." + str(self.month) +
-                " - " + str(self.start_hour) +
-                ":" + str(self.start_min) +
-                " --- " + str(self.end_hour) +
-                ":" + str(self.end_min))
+                " - " + self.int_to_string(self.start_hour) +
+                ":" + self.int_to_string(self.start_min) +
+                " --- " + self.int_to_string(self.end_hour) +
+                ":" + self.int_to_string(self.end_min))
 
-work_days = []
+    def int_to_string(self, number):
+        return (str(number) if number > 9 else "0" + str(number))
 
-if __name__ == '__main__':
+def load_work_days():
+    work_days = []
     start_stamps = get_timestamps(REGISTER_START_FILE_NAME)
     end_stamps = get_timestamps(REGISTER_END_FILE_NAME)
     for start in start_stamps:
@@ -34,6 +36,12 @@ if __name__ == '__main__':
             if is_same_day(start, end):
                 work_days.append(WorkDay(start, end))
                 break
+    return work_days
 
+def print_work_days(work_days):
     for day in work_days:
         print(day)
+
+if __name__ == '__main__':
+    work_days = load_work_days()
+    print_work_days()
